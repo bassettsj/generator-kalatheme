@@ -28,6 +28,6 @@ module.exports = function (gulp) {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest(paths.css.dest))
+    .pipe(gulp.dest(paths.css.dest));
   });
 };
