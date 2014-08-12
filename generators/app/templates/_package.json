@@ -2,10 +2,25 @@
   "name": "<%= _.slugify(appname) %>",
   "version": "0.1.0",
   "description": "<%= description %>",
-  "author": "<%= user.name %> <<%= user.email %>>",
+  <% if (userName && userName.length) { %>"author": "<%= userName %> <%= userEmail.length ? '<' + userEmail + '>' : '' %>",<% } %>
   <% if (browserify) { %>"main": "scripts/index.js",<% } %>
   "repository": {
     "type": "git",
     "url": "<%= repo %>"
-  }
+  }<% if (buildSystem) { %>,
+  "devDependencies" : {
+    "del": "~0.1.1",
+    "gulp": "~3.8.7",
+    "gulp-autoprefixer": "~0.0.8",
+    <% if (browserify) { %>"gulp-browserify": "~0.5.0",<% } %>
+    "gulp-csscomb": "~3.0.2",
+    "gulp-csslint": "~0.1.5",
+    "gulp-cssmin": "~0.1.6",
+    "gulp-imagemin": "~0.6.2",
+    "gulp-newer": "~0.3.0",
+    "gulp-rename": "~1.2.0",
+    <% if (css === 'scss') { %>"gulp-sass": "~0.7.3",<% } %>
+    "gulp-sourcemaps": "~1.1.1",
+    "gulp-uglify": "~0.3.1"
+  }<% } %>
 }

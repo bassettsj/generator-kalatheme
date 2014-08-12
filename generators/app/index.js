@@ -15,10 +15,14 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
       var done = this.async();
       this.npmInstall(this.npmDevDep, {saveDev: true}, done());
     };
-
+    var completeMessage = function () {
+      this.log('Completed! Enjoy your new theme!');
+    };
     this.on('end', function () {
-      this.installDependencies();
-      this.installDevDep();
+      if (!this.options['skip-install']) {
+        this.installDevDep();
+        this.installDependencies(completeMessage);
+      }
     });
   },
 
@@ -49,14 +53,24 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
       default: 'An aweseome theme powered by kalatheme and yeoman!'
     }, {
       type: 'input',
+      name: 'userName',
+      message: 'Full name:',
+      default: this.user.name
+    }, {
+      type: 'input',
+      name: 'userEmail',
+      message: 'Email:',
+      default: this.user.email
+    }, {
+      type: 'input',
       name: 'repo',
       message: 'Repository URL:'
     }, {
       type: 'list',
       name: 'css',
       message: 'In what format would you like the use for stylesheets?',
-      choices: ['sass', 'css'],
-      default: 'sass'
+      choices: ['scss', 'css'],
+      default: 'scss'
     }, {
       type: 'confirm',
       name: 'browserify',
@@ -79,6 +93,8 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
       this.browserify = props.browserify;
       this.buildSystem = props.buildSystem;
       this.repo = props.repo;
+      this.userName = props.userName;
+      this.userEmail = props.userEmail;
       done();
     }.bind(this));
   },
@@ -99,7 +115,9 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
    * Scaffold out the styles for the subtheme.
    */
   styles: function () {
-    if (this.css === 'sass') {
+    if (this.css === 'css') {
+      this.directory('css', 'css');
+    } else {
       this.directory('scss', 'scss');
     }
   },
@@ -119,15 +137,6 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
     }
   },
 
-
-  bootstrap: function () {
-    var done = this.async();
-    // The SASS version has wacky JS so let's include both.
-    var bower = ['bootstrap'];
-    if (this.css === 'sass') { bower.push('bootstrap-sass-official'); }
-
-    this.bowerInstall(bower, {save: true},  done());
-  },
   /**
    * PHP related build tasks.
    */
@@ -139,8 +148,6 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
 
   gulp: function () {
     if (!this.buildSystem) { return; }
-
-    var done = this.async();
 
     var gulpModules = [
       'gulp',
@@ -164,7 +171,6 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
       this.npmDevDep.concat(gulpModules) : gulpModules;
     this.copy('default-gulpfile.js', 'gulpfile.js');
     this.directory('gulp', 'gulp');
-    done();
   }
 });
 
