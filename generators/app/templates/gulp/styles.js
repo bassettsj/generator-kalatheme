@@ -13,7 +13,7 @@ module.exports = function (gulp) {
   gulp.task('styles', ['clean'], function () {
     gulp.src(paths.css.src)
     .pipe(gulpsass({
-      includePaths: paths.css.inlcudes,
+      includePaths: paths.css.includes,
       sourceMap: 'map'
     }))
     .pipe(prefixer({
