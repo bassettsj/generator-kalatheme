@@ -7,7 +7,8 @@
 
 'use strict';
 // Since we are using module system we don't have to worry
-// about wrapper functions.
+
+require('./console-erros')();
 var $ = window.jQuery;
 require('bootstrap')();
 

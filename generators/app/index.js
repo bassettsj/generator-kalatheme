@@ -24,6 +24,7 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
         this.installDependencies(completeMessage);
       }
     });
+
   },
 
   askFor: function () {
@@ -66,12 +67,6 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
       name: 'repo',
       message: 'Repository URL:'
     }, {
-      type: 'list',
-      name: 'css',
-      message: 'In what format would you like the use for stylesheets?',
-      choices: ['scss', 'css'],
-      default: 'scss'
-    }, {
       type: 'confirm',
       name: 'browserify',
       message: 'Do you want to use CommonJS style modules with browserify?',
@@ -87,9 +82,7 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
       // Sets the generator properties.
       this.humanName = props.humanName;
       this.appname = props.name;
-      this.css = props.css;
       this.description = props.description;
-      this.coffeescript = false; // props.coffeescript;
       this.browserify = props.browserify;
       this.buildSystem = props.buildSystem;
       this.repo = props.repo;
@@ -126,14 +119,13 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
    * Scaffold out the theme's javascript assets.
    */
   scripts: function () {
-    this.mkdir('scripts');
-    // Generic file extension.
-    var ext = this.coffeescript ? 'coffee' : 'js';
+    this.copy('scripts/console-pollyfill.js', 'scripts/console-pollyfill.js');
     if (this.browserify) {
-      this.template('scripts/_index.' + ext, 'scripts/index.' + ext);
+      this.template('scripts/_index.js', 'scripts/index.js');
     }
     else {
-      this.template('script/_vanilla' + ext, 'script/' + this._.this.appname  + ext);
+      this.template('scripts/_vanilla.js',
+       'scripts/' + this._.camelize(this.appname)  + '.js');
     }
   },
 
@@ -170,9 +162,13 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
     this.npmDevDep = this.npmDevDep ?
       this.npmDevDep.concat(gulpModules) : gulpModules;
     this.copy('default-gulpfile.js', 'gulpfile.js');
-    this.directory('gulp', 'gulp');
+    this._processFiles('gulp', 'gulp');
   }
 });
+/**
+ * Load the module for adding the method.
+ */
+require('./processFiles')(KalathemeGenerator);
 
 
 module.exports = KalathemeGenerator;

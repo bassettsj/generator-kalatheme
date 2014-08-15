@@ -8,7 +8,7 @@ module.exports = function (gulp) {
   });
 
   gulp.task('watch-scripts', ['scripts'], function () {
-    gulp.watch(paths.scripts.watch, ['scripts']);
+    gulp.watch(paths.scripts.src, ['scripts']);
   });
   gulp.task('watch-images', function () {
     gulp.watch(paths.images.src, ['images']);

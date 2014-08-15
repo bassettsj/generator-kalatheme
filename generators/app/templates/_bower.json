@@ -5,7 +5,7 @@
   <% if (userName && userName.length) { %>"author": "<%= userName %> <%= userEmail.length ? '<' + userEmail + '>' : '' %>",<% } %>
   "main": "scripts/index.js",
   "dependencies": {
-    "bootstrap": ">=3.1.0"<% if (css = 'scss') { %>,
-    "bootstrap-sass-official": ">=3.1.0"<% } %>
+    "bootstrap": ">=3.1.0",
+    "bootstrap-sass-official": ">=3.1.0"
   }
 }

@@ -7,9 +7,8 @@ module.exports = {
     csslintrc: 'scss/.csslintrc.json'
   },
   scripts: {
-    src: 'scripts/index.js',
+    src: 'scripts/**/*.js',
     dest: 'dist/js',
-    watch: 'scripts/**/*.{js}'
   },
   images: {
     src: 'img_src/**/*.{svg, png, jpg, gif}',
