@@ -14,8 +14,6 @@ describe('kalatheme generator', function () {
         humanName: 'My Awesome Theme',
         name: 'my_awesome_theme',
         description: 'An awesome theme!',
-        css : 'scss',
-        coffeescript: true,
         browserify: true,
         buildSystem: true,
         repo: 'git@github.com:kalamuna/generator-kalatheme.git',
