@@ -1,11 +1,18 @@
 name = <%= humanName %>
 description = "<%= description %>"
-project = <%= _.slugify(appname) %>
+base theme = kalatheme
+project = <%= appname %>
 core = 7.x
 php = 5.3
 
-regions = content
-bootstrap = custom
+regions[content] = content
+
+settings[fontawesome] = 1
+settings[bootstrap] = custom
 
 <% if (buildSystem) { %>stylesheets[] = 'dist/css/<%= appname %>.css'
-javascript[] = 'dist/js/<%= _.camelize(appname) %>.min.js'<% } %>
+scripts[] = 'dist/js/<%= _.camelize(appname) %>.min.js'<% } else { %>
+; set your asset paths for CSS and JS
+; stylesheets[] = css/my-css.css
+; scripts[] = js/my-js-to-include.js
+<% } %>

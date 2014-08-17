@@ -17,11 +17,13 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
     };
     var completeMessage = function () {
       this.log('Completed! Enjoy your new theme!');
-    };
+    }.bind(this);
     this.on('end', function () {
+      var done = this.async();
       if (!this.options['skip-install']) {
         this.installDevDep();
         this.installDependencies(completeMessage);
+        done();
       }
     });
 
@@ -55,12 +57,12 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
     }, {
       type: 'input',
       name: 'userName',
-      message: 'Full name:',
+      message: 'Your Full name:',
       default: this.user.name
     }, {
       type: 'input',
       name: 'userEmail',
-      message: 'Email:',
+      message: 'Your Email:',
       default: this.user.email
     }, {
       type: 'input',
@@ -141,19 +143,25 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
       'gulp',
       'del',
       'gulp-autoprefixer',
-      'gulp-browserify',
       'gulp-csscomb',
       'gulp-csslint',
       'gulp-cssmin',
-      'gulp-kss',
+      'gulp-sass',
       'gulp-rename',
       'gulp-sass',
-      'gulp-sourcemaps',
+      'gulp-jshint',
       'gulp-uglify',
       'gulp-imagemin',
       'gulp-newer'
     ];
 
+
+    if (this.browserfiy) {
+      gulpModules.push('gulp-browserify');
+    } else {
+      gulpModules.push('gulp-concat');
+      gulpModules.push('merge-stream');
+    }
     this.npmDevDep = this.npmDevDep ?
       this.npmDevDep.concat(gulpModules) : gulpModules;
     this.copy('default-gulpfile.js', 'gulpfile.js');

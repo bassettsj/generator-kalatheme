@@ -7,12 +7,13 @@
   "repository": {
     "type": "git",
     "url": "<%= repo %>"
-  }<% if (buildSystem) { %>,
+  }<% if (buildSystem && options['skip-install']) { %>,
   "devDependencies" : {
     "del": "~0.1.1",
     "gulp": "~3.8.7",
     "gulp-autoprefixer": "~0.0.8",
-    <% if (browserify) { %>"gulp-browserify": "~0.5.0",<% } else { %>"gulp-concat": ">=2.3.0",<% }%>
+    <% if (browserify) { %>"gulp-browserify": "~0.5.0",<% } else { %>"gulp-concat": ">=2.3.0",
+    "merge-stream": "~0.1.5",<% }%>
     "gulp-jshint": ">=1.8.4",
     "gulp-csscomb": "~3.0.2",
     "gulp-csslint": "~0.1.5",
@@ -21,7 +22,6 @@
     "gulp-newer": "~0.3.0",
     "gulp-rename": "~1.2.0",
     "gulp-sass": "~0.7.3",
-    "gulp-sourcemaps": "~1.1.1",
     "gulp-uglify": "~0.3.1"
   }<% } %>
 }
