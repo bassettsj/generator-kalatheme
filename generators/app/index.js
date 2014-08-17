@@ -108,11 +108,7 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
    * Scaffold out the styles for the subtheme.
    */
   styles: function () {
-    if (this.css === 'css') {
-      this.directory('css', 'css');
-    } else {
-      this.directory('scss', 'scss');
-    }
+    this.directory('scss', 'scss');
   },
 
   /**
@@ -157,7 +153,6 @@ var KalathemeGenerator = yeoman.generators.Base.extend({
       'gulp-imagemin',
       'gulp-newer'
     ];
-
 
     this.npmDevDep = this.npmDevDep ?
       this.npmDevDep.concat(gulpModules) : gulpModules;

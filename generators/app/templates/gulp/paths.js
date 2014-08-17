@@ -13,5 +13,8 @@ module.exports = {
   images: {
     src: 'img_src/**/*.{svg, png, jpg, gif}',
     dest: 'dist/img'
+  },
+  bootstrap: {
+    js: './bower_components/bootstrap/dist/js/bootstrap.js'
   }
 };
