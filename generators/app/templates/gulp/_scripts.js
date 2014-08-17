@@ -11,14 +11,14 @@ var rename = require('gulp-rename'),
 module.exports = function (gulp) {
   gulp.task('scripts', function () {
 <% if (browserify) {%>
-    var bootstrap =  gulp.src('./bower_components/bootstrap/dist/js/bootstrap.js');
+    var bootstrap =  gulp.src(paths.bootstrap.js);
     var src =<% }%> gulp.src(paths.scripts.src)
     .pipe(jshint());
     <% if (browserify) {%>
     .pipe(browserify({
       shim: {
         bootstrap: {
-          path: 'bower_components/bootstrap/dist/js/bootstrap.js',
+          path: paths.bootstrap.js,
           exports: 'jQuery', // Drupal has jQuery global.
         }
       }

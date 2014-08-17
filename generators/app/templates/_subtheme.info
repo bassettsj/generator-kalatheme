@@ -7,5 +7,5 @@ php = 5.3
 regions = content
 bootstrap = custom
 
-stylesheets[] = 'dist/css/<%= appname %>.css'
-javascript[] = 'dist/js/<%= appname %>.js'
+<% if (buildSystem) { %>stylesheets[] = 'dist/css/<%= appname %>.css'
+javascript[] = 'dist/js/<%= _.camelize(appname) %>.min.js'<% } %>

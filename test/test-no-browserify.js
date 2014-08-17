@@ -8,7 +8,8 @@ var helpers = require('yeoman-generator').test,
 
 describe('selecting to not use browserify', function () {
   var defaultPrompts;
-  describe('with gulp', function () {
+
+  describe('still using gulp', function () {
     beforeEach(function (done) {
       helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
         if (err) {
@@ -28,24 +29,38 @@ describe('selecting to not use browserify', function () {
         done();
       }.bind(this));
     });
-
+    
     it('creates a js file named the app name', function (done) {
       helpers.mockPrompt(this.app, defaultPrompts);
-
       this.app.options['skip-install'] = true;
+
       this.app.run({}, function () {
         assert.file('scripts/myAwesomeTheme.js');
-        assert.fileConent('my_awesome_theme.info', 'dist/myAwesomeTheme.js')
+        assert.fileContent('my_awesome_theme.info', /dist\/js\/myAwesomeTheme.min.js/);
         done();
       });
     });
 
-    it('doesn\'t add the browserify task or plugin', function () {
-      assert.noFileContent('gulp/scripts', 'browserify');
-      assert.noFileContent('package.json', 'browserify');
+
+    it('doesn\'t add the browserify task or plugin', function (done) {
+      helpers.mockPrompt(this.app, defaultPrompts);
+      this.app.options['skip-install'] = true;
+
+      this.app.run({}, function () {
+        assert.noFileContent('gulp/scripts.js', /browserify/);
+        assert.noFileContent('package.json', /browserify/);
+        done();
+      });
     });
-    it('adds the bootstrap js to the build process', function () {
-      assert.fileConent('gulp/paths.js', 'bootstrap');
+
+    it('adds the bootstrap js to the build process', function (done) {
+      helpers.mockPrompt(this.app, defaultPrompts);
+      this.app.options['skip-install'] = true;
+
+      this.app.run({}, function () {
+        assert.fileContent('gulp/paths.js', /bootstrap/);
+        done();
+      });
     });
   });
 });

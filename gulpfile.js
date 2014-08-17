@@ -24,7 +24,7 @@ gulp.task('scripts', function () {
 
 gulp.task('tests', function () {
   gulp.src(paths.tests, {read: false})
-  .pipe(mocha({reporter: 'nyan'}));
+  .pipe(mocha({reporter: 'spec'}));
 });
 
 gulp.task('default', ['scripts', 'tests']);

@@ -1,9 +1,9 @@
 {
-  "name": "<%= _.slugify(appname) %>",
+  "name": "<%= _.camelize(appname) %>",
   "version": "0.1.0",
   "description": "<%= description %>",
   <% if (userName && userName.length) { %>"author": "<%= userName %> <%= userEmail.length ? '<' + userEmail + '>' : '' %>",<% } %>
-  <% if (browserify) { %>"main": "scripts/index.js",<% } %>
+  "main": <% if (browserify) { %>"scripts/index.js"<% } else { %>"dist/js/<%= _.camelize(appname) %>.js"<% } %>,
   "repository": {
     "type": "git",
     "url": "<%= repo %>"
