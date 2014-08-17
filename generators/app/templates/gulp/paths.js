@@ -7,12 +7,14 @@ module.exports = {
     csslintrc: 'scss/.csslintrc.json'
   },
   scripts: {
-    src: 'scripts/index.js',
+    src: 'scripts/**/*.js',
     dest: 'dist/js',
-    watch: 'scripts/**/*.{js}'
   },
   images: {
     src: 'img_src/**/*.{svg, png, jpg, gif}',
     dest: 'dist/img'
+  },
+  bootstrap: {
+    js: './bower_components/bootstrap/dist/js/bootstrap.js'
   }
 };
