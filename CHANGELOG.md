@@ -1,3 +1,11 @@
+### 0.1.3 (2014-08-17)
+
+
+#### Bug Fixes
+
+* **non-browserify:** updates the non-browserify option ([f9e6a103](https://github.com/kalamuna/generator-kalatheme/commit/f9e6a1035aa97cef440753d7ca9bf9f4cab3e0a6))
+
+
 ### 0.1.2 (2014-08-17)
 
 
