@@ -1,6 +1,6 @@
 {
   "name": "generator-kalatheme",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Kalatheme subtheme generator powered by yeoman",
   "license": "MIT",
   "main": "generators/app/index.js",
@@ -24,7 +24,6 @@
   ],
   "dependencies": {
     "yeoman-generator": ">=0.17.0",
-    "chalk": "~0.4.0",
     "yosay": ">=0.3.0"
   },
   "devDependencies": {
