@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha'),
     stylish = require('jshint-stylish'),
     changelog = require('conventional-changelog'),
-    yargs = require('yargs'),
+    yargs = require('yargs').argv,
+    bump = require('gulp-bump'),
     fs = require('fs');
 
 // Paths configuration.
@@ -51,6 +52,16 @@ gulp.task('changelog', function () {
     }
   });
 });
+
+/**
+ * Bump versions automatically.
+ */
+gulp.task('bump', function () {
+  gulp.src('package.json')
+  .pipe(bump({type: yargs.type || 'patch'}))
+  .pipe(gulp.dest('./'));
+});
+
 gulp.task('default', ['scripts', 'tests']);
 
 
