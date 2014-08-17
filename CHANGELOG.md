@@ -1,6 +1,22 @@
 ### 0.1.2 (2014-08-17)
 
 
+#### Features
+
+* **bump:** semv task for upping the versions ([e5d063cc](https://github.com/kalamuna/generator-kalatheme/commit/e5d063cc5bca5fdcc6904893734f546949a02caa))
+* **gulp:**
+  * add conventional-changelog task ([b2b7db71](https://github.com/kalamuna/generator-kalatheme/commit/b2b7db714756db39cd2d096c60d47ba76b0aa457))
+  * add support for non browserify ([7eb071d3](https://github.com/kalamuna/generator-kalatheme/commit/7eb071d3973d8beaa1087a7b03207439e08bbba5))
+  * add support for non browserify ([57083e58](https://github.com/kalamuna/generator-kalatheme/commit/57083e5825d9048e9cbd1c663d11c0b2fa9e5135))
+* **skip-insall:** allows for skip install by adding a pkg and bower fallback ([4e17f61f](https://github.com/kalamuna/generator-kalatheme/commit/4e17f61f4d56cb922d374287b4e972dbd35ccff9))
+* **tests:**
+  * set up some scaffolding for unit tests ([773eb82d](https://github.com/kalamuna/generator-kalatheme/commit/773eb82dc5eb8be22851fb660a55ca8173cf0959))
+  * set up some scaffolding for unit tests ([9c06d4e6](https://github.com/kalamuna/generator-kalatheme/commit/9c06d4e67a9cbdfdd529df0443b4f06982f4bee4))
+
+
+### 0.1.2 (2014-08-17)
+
+
 #### Bug Fixes
 
 * **browserfiy:** fixes a browserfiy not compiling task ([e8e3153f](https://github.com/kalamuna/generator-kalatheme/commit/e8e3153fa9d1e3b8f8d33d4a11e01d580fb925e3))
