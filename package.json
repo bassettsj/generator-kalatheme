@@ -20,7 +20,10 @@
     "generators/app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "kalatheme",
+    "yeoman",
+    "drupal"
   ],
   "dependencies": {
     "yeoman-generator": ">=0.17.0",
